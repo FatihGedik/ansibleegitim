@@ -1,0 +1,53 @@
+---
+# tasks file for akala.gitlab
+- name: install dependencies
+  package: "{{ item }}"
+  with_items:
+    - curl 
+    - policycoreutils-python 
+    - openssh-server
+    - postfix
+  when: ansible_distribution == 'RedHat'
+
+- name: Allow firewall ports
+  firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    state: enabled
+  with_items:
+      - "http"
+      - "https"
+
+
+- name: Restart Services
+  service: name="{{ item }}" state=restarted
+  with_items:
+    - sshd
+    - postfix
+    - firewalld
+
+- name: check gitlab-ce install
+  stat: 
+    path: /usr/bin/gitlab-ctl
+  register: my_gitlab_ce_file
+
+- name: download gitlab-ce script
+  get_url:
+    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh
+    dest: /opt/script.rpm.sh
+    mode: 0744
+  when: not my_gitlab_ce_file.stat.exists
+
+- name: run gitlab-ce script
+  command:
+    cmd: /bin/bash /opt/script.rpm.sh
+  when: not my_gitlab_ce_file.stat.exists
+
+- name: install gitlab-ce
+  command:
+    cmd: sudo EXTERNAL_URL=“https://gitlab.spider.com” yum install -y gitlab-ce
+  when: not my_gitlab_ce_file.stat.exists
+
+
+
+  

@@ -1,0 +1,35 @@
+---
+- name: install jre
+  package: name=java state=present
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: install kernel-devel and gcc for vbox guest agent
+  package: name="{{ item }}" state=present
+  with_items:
+    - kernel-devel
+    - gcc
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: install ntpd
+  package: name=ntp state=present
+  when: ansible_facts['os_family'] == "RedHat"
+    
+- name: start ntpd service
+  service: name=ntpd state=restarted
+  when: ansible_facts['os_family'] == "RedHat"
+  tags: new
+
+- name: install jre
+  package: name=default-jre state=present
+  when: ansible_facts['os_family'] == "Debian"
+    
+- name: install ntp
+  package: name=ntp state=present
+  when: ansible_facts['os_family'] == "Debian"
+    
+- name: start ntp service
+  service: name=ntp state=restarted
+  when: ansible_facts['os_family'] == "Debian"
+
+
+   

@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: check object
+      stat:
+        path: "/etc/haproxy/haproxy.cfg"
+      register: rg
+
+    - debug:
+        msg: 
+          - "{{ rg.stat.isblk }}"
+          - "This is my message"

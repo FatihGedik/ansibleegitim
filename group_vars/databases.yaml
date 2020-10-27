@@ -1,0 +1,9 @@
+mysql_root_password: mysupersecpasswd
+mysql_databases:
+  - name: example_db
+mysql_users:
+  - name: test_user
+    host: "%"
+    password: nearlysecpasswd
+    priv: "example_db.*:ALL"
+

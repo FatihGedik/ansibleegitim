@@ -1,0 +1,3 @@
+---
+# defaults file for akala.kubeadmupgrade
+kubeadm_version: kubeadm-1.17.2-0.x86_64

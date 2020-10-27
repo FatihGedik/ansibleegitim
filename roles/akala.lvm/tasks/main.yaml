@@ -1,0 +1,45 @@
+---
+
+- name: Check PVS for new disk
+  shell: if [[ $(pvs | grep {{new_disk}}) != "" ]]; then echo "ok"; fi 
+  register: ps
+  args:
+    executable: /bin/bash
+
+#- name: Debug previous task
+#  debug: 
+#    msg: "{{ps.stdout}}"
+
+- name: Create Phyical Volume
+  command: /sbin/pvcreate {{new_disk}} 
+  when: ps.stdout !="ok"
+
+- name: Check PVS for new disk to extend VG
+  shell: if [[ $(pvs |grep {{new_disk}} | awk '{print $2}') != {{vg_name}} ]]; then echo "ok"; fi 
+  register: vg
+  args:
+    executable: /bin/bash
+
+
+- name: Extend Volume Group
+  shell: /sbin/vgextend {{vg_name}} {{new_disk}}
+  args:
+    executable: /bin/bash
+  when: vg.stdout =="ok"
+
+- name: Get LV Name
+  shell: lvs | grep {{vg_name}} | awk '{print $1}'
+  register: lvn
+
+- name: Resize Volume Group
+  shell: /sbin/lvextend -L +{{extend_size}} /dev/{{vg_name}}/{{lvn.stdout}}
+  args:
+    executable: /bin/bash
+  when: vg.stdout =="ok"
+
+- name: Resize2fs Volume
+  shell: /sbin/resize2fs /dev/VolGroup00/LogVol00
+  args:
+    executable: /bin/bash
+  when: vg.stdout =="ok"
+

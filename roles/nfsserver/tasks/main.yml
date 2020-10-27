@@ -1,0 +1,17 @@
+---
+# tasks file for nfsserver
+
+- name: install nfs server
+  package: name={{ item }} state=present
+  with_items: "{{ nfs_packages }}" 
+
+- name: configure nfs exports
+  template:
+    src: exports.j2
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode:  0644
+
+- name: restart nfs server
+  service: name=nfs state=restarted

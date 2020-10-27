@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+    - name: create directory
+      file:
+        name: "/opt/example1/iostat"
+        state: "directory"
+        owner: "akala"
+        group: "admins"
+        mode: 0755
+
+    - name: unarchieve tar.gz
+      unarchive:
+        src: "iostat-0.99.1.tar.gz"
+        dest: "/opt/example1/iostat"
+        owner: "akala"
+        group: "admins"
+        creates: "/opt/example1/iostat/bin/iostat.sh"

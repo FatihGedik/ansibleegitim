@@ -1,0 +1,5 @@
+---
+
+new_disk: /dev/sde
+vg_name: vg_test2
+extend_size: 1000M

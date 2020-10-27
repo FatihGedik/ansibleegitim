@@ -1,0 +1,6 @@
+---
+
+# Handlers main file for sftp role
+- name: restart_ssh
+  service: name=ssh state=restarted
+

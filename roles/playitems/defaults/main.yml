@@ -1,0 +1,16 @@
+---
+# defaults file for playitems
+
+mylistitems: 
+  - "This is my third item"
+  - "This is my forth item"
+
+mydictitems:
+  myfirstkey:
+    ip: 10.0.2.5
+    port: 82
+  mysecondkey:
+    ip: 10.0.2.6
+    port: 83
+
+

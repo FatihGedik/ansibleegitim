@@ -1,0 +1,116 @@
+---
+
+- hosts: databases
+  become: true
+  roles: 
+    - role: postgresql
+  tags: psql
+
+- hosts: all
+  become: true
+  roles:
+    - role: common
+    - role: geerlingguy.java
+  tags: com
+
+- hosts: webservers
+  become: true
+  roles:
+   - role: mrlesmithjr.apache2
+   - role: apache2modify
+#    tags: web
+  tags: web
+
+- hosts: loadbalancers
+  become: true
+  roles:
+    - role: geerlingguy.haproxy
+    - role: haproxymodify
+  tags: hap
+
+- hosts: loadbalancers
+  become: true
+  roles:
+    - role: debug
+      me: 'roles.yaml'
+  tags: deb
+
+- hosts: loadbalancers
+  become: true
+  roles:
+    - role: volumeregister
+  tags: vol
+
+- hosts: loadbalancers
+  become: true
+  roles:
+    - role: nfsserver
+  tags: nfs
+
+- hosts: loadbalancers
+  become: true
+  roles:
+    - role: profiler
+  tags: pro
+
+- hosts: loadbalancers
+  become: true
+  roles:
+    - role: playitems
+  tags: item
+
+- hosts: k8s
+  become: true
+  roles:
+    - role: akala.docker
+  tags: doc
+
+- hosts: k8s
+  become: true
+  roles:
+    - role: akala.kubeadm
+  tags: kadm
+
+- hosts: gitlab
+  become: true
+  roles:
+    - role: akala.gitlab
+  tags: git
+
+- hosts: k8s
+  become: true
+  roles:
+    - role: akala.kubeadmupgrade
+  tags: kadmup
+
+- hosts: k8s
+  become: true
+  roles:
+    - role: akala.kubeletupgrade
+  tags: kletup
+
+- hosts: all
+  become: true
+  roles:
+    - role: akala.nodeexporter
+  tags: nodeexporter
+
+- hosts: databases
+  become: yes
+  vars_files:
+    - vars/main.yml
+  roles:
+    - role: geerlingguy.mysql 
+  tags: mysql
+
+- hosts: sftp-servers
+  become: true
+  roles:
+    - role: akala.sftp 
+  tags: sftp
+
+- hosts: lvm-servers
+  become: true
+  roles:
+    - role: akala.lvm 
+  tags: lvm

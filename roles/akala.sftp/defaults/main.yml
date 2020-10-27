@@ -1,0 +1,26 @@
+---
+
+# Defaults vars file for sftp role
+
+sftp_group_name: 'sftpusers'
+
+
+# Path management about sftp users home dir
+sftp_data_dir_path: '/var/sftp'
+sftp_data_dir_mode: '0750'
+sftp_data_dir_owner: 'root'
+sftp_data_dir_group: "{{ sftp_group_name }}"
+
+# Sftp users management
+sftp_users_home_mode: '0750'
+sftp_users_skeleton: '/etc/skel'
+sftp_users_shell: '/usr/sbin/nologin'
+#sftp_users: []
+
+sftp_users:
+  - name: 'sftptest'
+    skeleton: '/etc/skel/sftp-users'
+    shell: '/bin/false' 
+    state: 'present'
+    password: '$1$SomeSalt$PPmF2E0rgLXLtBGMUM60X1'
+

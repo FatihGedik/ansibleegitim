@@ -1,0 +1,37 @@
+---
+# tasks file for akala.nodeexporter
+
+- name: install wget tool
+  package: name=wget state=present
+
+- name: install node_exporter by script
+  template:
+    src: nodeexporter.sh.j2
+    dest: /tmp/nodeexporter.sh
+    owner: root
+    group: root
+    mode:  0744
+
+- name: check node-exporter downloaded or not
+  stat: path=/usr/local/bin/node_exporter
+  register: nodeexporter
+
+
+- name: run nodeexporter.sh script
+  shell:
+    cmd: "/bin/bash /tmp/nodeexporter.sh"
+  when: not nodeexporter.stat.exists
+    
+- name: allow 9100 on firewall
+  firewalld:
+    port: "{{ item }}"
+    permanent: yes
+    state: enabled
+  with_items:
+    - "9100/tcp"
+
+- name: stop firewalld service
+  service: name=firewalld state=stopped
+
+  
+ 
