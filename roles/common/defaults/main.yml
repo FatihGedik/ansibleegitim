@@ -1,0 +1,24 @@
+# rsyslog configuration defaults
+---
+rsyslog_client_local: True
+
+# ssh user idle time
+ssh_idle_time: 3600
+
+# max login session per user
+max_login_session_per_user: 8
+
+# spacewalk basic repo
+spacewalk_server_ip: 10.189.0.42
+
+# solarwinds settings
+
+solarwinds_srv_ip: 10.160.41.80
+
+solarwinds_srv_old_ip: 195.87.1.20
+
+solarwinds_gw_ip: 10.189.0.1
+
+solarwinds_path: '/opt/SolarWinds/Agent/bin/swiagent'
+
+

@@ -1,0 +1,48 @@
+---
+
+### Configure LOG Management
+- name: install rsyslog if not exist
+  package: name=rsyslog state=present
+
+- name: enable rsyslog
+  service: name=rsyslog state=restarted
+
+
+### Configure User IDLE TIME
+
+- name: Configure user logout time {{ ssh_idle_time }} seconds by setting idle time
+  blockinfile:
+    path: /etc/ssh/sshd_config
+    block: |
+      ClientAliveInterval {{ ssh_idle_time }}
+      ClientAliveCountMax 0
+
+### Configure User Max Session
+
+- name: Configure max session can be opened by a user = {{ max_login_session_per_user }}
+  blockinfile:
+    path: /etc/security/limits.conf
+    block: |
+      * hard maxlogins {{ max_login_session_per_user }}
+
+- name: Configure sudo 
+  blockinfile:
+    path: /etc/sudoers
+    block: |
+      Defaults  use_pty
+      Defaults  logfile=/var/log/sudo.log
+
+- name: apt-install sysadmtools
+  apt:
+    name: ['auditd', 'atop', 'htop', 'wget', 'nano', 'screen', 'open-vm-tools', 'iftop', 'iotop']
+    update_cache: true
+    state: latest 
+
+- name: enable and start open-vm-tools
+  service: name=open-vm-tools enabled=yes state=started
+
+- name: enable and start atop
+  service: name=atop enabled=yes state=started
+
+- name: enable auditd service
+  service: name=auditd enabled=yes state=started

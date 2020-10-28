@@ -1,0 +1,36 @@
+---
+
+- hosts: databases
+  become: true
+  roles: 
+    - role: postgresql
+  tags: psql
+
+- hosts: all
+  become: true
+  roles:
+    - role: common
+  tags: com
+
+- hosts: webservers
+  become: true
+  roles:
+   - role: mrlesmithjr.apache2
+   - role: apache2modify
+  tags: web
+
+- hosts: loadbalancers
+  become: true
+  roles:
+    - role: debug
+      me: 'roles.yaml'
+  tags: deb
+
+- hosts: databases
+  become: yes
+  vars_files:
+    - vars/main.yml
+  roles:
+    - role: geerlingguy.mysql 
+  tags: mysql
+
