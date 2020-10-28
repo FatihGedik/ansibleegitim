@@ -1,5 +1,0 @@
----
-# defaults file for akala.nodeexporter
-
-NODE_EXPORTER_VERSION: "0.18.1"
-

@@ -1,9 +1,0 @@
----
-
-- hosts: spacewalk
-  remote_user: vfadmin
-  become: true
-  roles:
-    - role: spacewalk
-  tags: spc
-

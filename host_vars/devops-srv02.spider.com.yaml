@@ -1,7 +1,0 @@
----
-me: "This is debug message from host_vars file"
-volume_path: '/dev/sdb'
-volume_mount_path: '/mnt'
-volume_mount_user: 'akala' 
-volume_mount_group: 'admins'
-

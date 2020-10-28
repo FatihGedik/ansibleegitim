@@ -1,7 +1,0 @@
----
-# tasks file for debug
-- debug:
-    msg: "This debug message came from {{ me|default('roles/debug/tasks/main.yaml') }}"
-
-- debug:
-    msg: "This is my secret and it must be encrypted .... > {{ mysecret }}"

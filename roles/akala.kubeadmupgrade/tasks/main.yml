@@ -1,7 +1,0 @@
----
-# tasks file for akala.kubeadmupgrade
-
-- name:
-  yum:
-    name: "{{ kubeadm_version }}"
-    state: present

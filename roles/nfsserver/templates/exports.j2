@@ -1,3 +1,0 @@
-{% for key,value in nfs_exports.iteritems() %}
-{{ value.path }} {{ value.cidr }}(rw,sync,no_root_squash)
-{% endfor %}
