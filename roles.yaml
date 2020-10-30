@@ -2,18 +2,21 @@
 
 - hosts: databases
   become: true
+  remote_user: badmin
   roles: 
     - role: postgresql
   tags: psql
 
 - hosts: all
   become: true
+  remote_user: badmin
   roles:
     - role: common
   tags: com
 
 - hosts: webservers
   become: true
+  remote_user: badmin
   roles:
    - role: mrlesmithjr.apache2
    - role: apache2modify
@@ -21,6 +24,7 @@
 
 - hosts: loadbalancers
   become: true
+  remote_user: badmin
   roles:
     - role: debug
       me: 'roles.yaml'
@@ -28,6 +32,7 @@
 
 - hosts: databases
   become: yes
+  remote_user: badmin
   vars_files:
     - vars/main.yml
   roles:
