@@ -33,8 +33,6 @@
 - hosts: databases
   become: yes
   remote_user: badmin
-  vars_files:
-    - vars/main.yml
   roles:
     - role: geerlingguy.mysql 
   tags: test-mysql
