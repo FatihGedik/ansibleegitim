@@ -5,14 +5,14 @@
   remote_user: badmin
   roles: 
     - role: postgresql
-  tags: psql
+  tags: prod-psql
 
 - hosts: all
   become: true
   remote_user: badmin
   roles:
     - role: common
-  tags: com
+  tags: all-com
 
 - hosts: webservers
   become: true
@@ -20,7 +20,7 @@
   roles:
    - role: mrlesmithjr.apache2
    - role: apache2modify
-  tags: web
+  tags: test-web
 
 - hosts: loadbalancers
   become: true
@@ -28,7 +28,7 @@
   roles:
     - role: debug
       me: 'roles.yaml'
-  tags: deb
+  tags: prod-deb
 
 - hosts: databases
   become: yes
@@ -37,5 +37,5 @@
     - vars/main.yml
   roles:
     - role: geerlingguy.mysql 
-  tags: mysql
+  tags: test-mysql
 
