@@ -22,13 +22,13 @@
    - role: apache2modify
   tags: test-web
 
-- hosts: loadbalancers
+- hosts: all
   become: true
   remote_user: badmin
   roles:
     - role: debug
       me: 'roles.yaml'
-  tags: prod-deb
+  tags: all-deb
 
 - hosts: databases
   become: yes
