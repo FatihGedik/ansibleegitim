@@ -31,11 +31,11 @@
       Defaults   use_pty
       Defaults   logfile=/var/log/sudo.log
 
-#- name: yum install epel-release
-#  yum:
-#    name: epel-release
-#    update_cache: yes
-#    state: latest 
+- name: yum install epel-release
+  yum:
+    name: epel-release
+    update_cache: yes
+    state: latest 
 
 - name: yum install sysadmtools
   yum:
