@@ -12,6 +12,8 @@
   remote_user: badmin
   roles:
     - role: common
+    - role: debug
+      me: 'roles.yaml'
   tags: all-com
 
 - hosts: webservers
@@ -22,13 +24,6 @@
    - role: apache2modify
   tags: test-web
 
-- hosts: all
-  become: true
-  remote_user: badmin
-  roles:
-    - role: debug
-      me: 'roles.yaml'
-  tags: all-deb
 
 - hosts: databases
   become: yes
