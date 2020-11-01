@@ -1,0 +1,23 @@
+---
+
+- name: add user
+  user:
+    createhome: true
+    name: "{{ user_name }}"
+    password: "{{ user_password | default('!') | password_hash('sha512') }}"
+    shell: "/bin/bash"
+
+
+- name: add user to a group
+  shell: |
+    usermod -a -G wheel {{ user_name }}
+    id {{ user_name }}
+  when: user_groups == "sudo"
+
+- name: add user to a group
+  shell: |
+    usermod -a -G {{ user_groups }} {{ user_name }}
+    id {{ user_name }}
+  when: user_groups != "sudo"
+
+    
