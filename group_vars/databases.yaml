@@ -1,6 +1,5 @@
 ---
-rhel_user_list:
-  - name: mydbadmin
-  - groups:
-      - sudo
-  - password: "mypasswod"
+user_name: "deneme"
+user_password: "deneme"
+user_groups:
+  - sudo

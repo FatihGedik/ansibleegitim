@@ -1,11 +1,5 @@
 ---
 
-- hosts: databases
-  become: true
-  remote_user: badmin
-  roles: 
-    - role: postgresql
-  tags: prod-psql
 
 - hosts: databases
   become: true
@@ -13,29 +7,4 @@
   roles: 
     - role: create-user
   tags: cusr
-
-- hosts: all
-  become: true
-  remote_user: badmin
-  roles:
-    - role: common
-    - role: debug
-      me: 'roles.yaml'
-  tags: all-com
-
-- hosts: webservers
-  become: true
-  remote_user: badmin
-  roles:
-   - role: mrlesmithjr.apache2
-   - role: apache2modify
-  tags: test-web
-
-
-- hosts: databases
-  become: yes
-  remote_user: badmin
-  roles:
-    - role: geerlingguy.mysql 
-  tags: test-mysql
 
