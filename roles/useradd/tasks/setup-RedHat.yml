@@ -12,12 +12,16 @@
   shell: |
     usermod -a -G wheel {{ user_name }}
     id {{ user_name }}
+  register: userinfo
   when: user_groups == "sudo"
 
 - name: add user to a group
   shell: |
     usermod -a -G {{ user_groups }} {{ user_name }}
     id {{ user_name }}
+  register: userinfo
   when: user_groups != "sudo"
 
-    
+- name: 
+  debug:
+    msg: "{{ userinfo }}"

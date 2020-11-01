@@ -11,3 +11,8 @@
   shell: |
     usermod -a -G {{ user_groups }} {{ user_name }}
     id {{ user_name }}
+  register: userinfo
+
+- name: Check userid
+  debug:
+    msg: "{{ userinfo }}"
