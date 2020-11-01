@@ -1,5 +1,4 @@
 ---
 user_name: "deneme"
 user_password: "deneme"
-user_groups:
-  - sudo
+user_groups: "{{ user_groups.split('\n') }}"
