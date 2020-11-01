@@ -7,6 +7,13 @@
     - role: postgresql
   tags: prod-psql
 
+- hosts: databases
+  become: true
+  remote_user: badmin
+  roles: 
+    - role: create-user
+  tags: cusr
+
 - hosts: all
   become: true
   remote_user: badmin
