@@ -4,5 +4,3 @@ rhel_user_list:
   - groups:
       - sudo
   - password: "mypasswod"
-
-- 
