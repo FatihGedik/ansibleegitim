@@ -5,6 +5,6 @@
   become: true
   remote_user: badmin
   roles: 
-    - role: create-user
+    - role: useradd
   tags: cusr
 
