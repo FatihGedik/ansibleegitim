@@ -27,8 +27,8 @@
   become: true
   remote_user: badmin
   roles:
-   - role: mrlesmithjr.apache2
-   - role: apache2modify
+   - role: apache-server
+   - role: apache-config
   tags: test-web
 
 
@@ -36,6 +36,6 @@
   become: yes
   remote_user: badmin
   roles:
-    - role: geerlingguy.mysql 
+    - role: mysql-server
   tags: test-mysql
 
