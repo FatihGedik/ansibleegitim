@@ -1,0 +1,10 @@
+- name: copy jinja file to /tmp
+  template:
+    src: "mytemplates.conf.j2"
+    dest: "/tmp/mytemplates.conf"
+    owner: "root"
+    group: "root"
+    mode: "u=rw,g=r,o=r"
+  become: true
+
+  

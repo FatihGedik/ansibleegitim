@@ -1,0 +1,19 @@
+
+Benim yasim={{ myage }}
+Benim esyalarim
+
+{% for mystaff in mylist %}
+{{ mystaff}}
+{% endfor %}
+
+Eger benim yasim 15 ise 
+{% if myage is defined %}
+benim yasim {{myage}}
+{% endif %}
+
+
+Buda sozluk icin
+{% for key,value in mydict.iteritems() %}
+sometext {{key}} sometext {{value.color}} and {{value.engine}}
+{% endfor %}
+

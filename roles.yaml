@@ -39,3 +39,16 @@
     - role: mysql-server
   tags: test-mysql
 
+- hosts: all
+  become: true
+  remote_user: badmin
+  roles:
+    - statexample
+  tags: stat 
+
+- hosts: all
+  become: true
+  remote_user: badmin
+  roles:
+    - jinjaexample
+  tags: jinja 

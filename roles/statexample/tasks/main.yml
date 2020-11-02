@@ -1,0 +1,15 @@
+- name: check volume_path
+  stat:
+    path: "{{ volume_path }}"
+  register: vp
+
+- debug:
+    msg: "{{ vp }}"
+
+- name:
+  shell: ip a
+  register: ipinfo
+  when: vp.stat.isblk is defined and vp.stat.isblk
+
+- debug:
+    msg: "{{ ipinfo }}"

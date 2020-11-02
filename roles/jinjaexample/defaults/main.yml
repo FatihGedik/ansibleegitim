@@ -1,0 +1,15 @@
+
+myage: 24
+
+mylist:
+  - item1
+  - item2
+  - item3
+
+mydict:
+  car1:
+    color: blue
+    engine: 1.2
+  car2:
+    color: red
+    engine: 1.4

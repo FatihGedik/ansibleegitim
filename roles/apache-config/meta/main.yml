@@ -54,4 +54,4 @@
 ---
 
 dependencies:
-  - mrlesmithjr.apache2 
+  - apache-server
