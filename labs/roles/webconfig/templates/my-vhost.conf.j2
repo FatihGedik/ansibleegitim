@@ -1,0 +1,18 @@
+NameVirtualHost *:{{http_port}}
+
+<VirtualHost {{listen_addr}}:{{http_port}}>
+
+ServerAdmin webmaster@example1.com
+
+DocumentRoot /var/www/html/mywebserver
+
+<Directory /var/www/html/mywebserver>
+
+    Options +Indexes
+
+</Directory>
+
+ServerName {{srv_name}}
+
+</VirtualHost>
+

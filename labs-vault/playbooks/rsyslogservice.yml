@@ -1,0 +1,12 @@
+---
+- name: my playbook common
+  hosts: all
+  become: true
+  become_method: sudo
+  become_user: root
+  remote_user: badmin
+
+  tasks:
+  - name: rsyslog service restart
+    service: "name=rsyslog state=restarted" 
+    

@@ -1,0 +1,8 @@
+---
+http_port: 80
+
+listen_addr: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+
+srv_name: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+
+

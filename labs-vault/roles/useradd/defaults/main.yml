@@ -1,0 +1,7 @@
+---
+# defaults file for useradd
+
+add_to_groups_rhel: ["wheel"]
+add_to_groups_debian: ["sudo"]
+user_name: deneme
+

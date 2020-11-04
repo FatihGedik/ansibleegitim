@@ -1,0 +1,11 @@
+---
+- name: rootfs disk durumuna bak
+  shell: "df -h /"
+  args:
+    executable: "/bin/bash"
+  register: disk
+
+- name: output rootfs disk durumu
+  debug:
+    msg: "{{ disk.stdout_lines }}" 
+    

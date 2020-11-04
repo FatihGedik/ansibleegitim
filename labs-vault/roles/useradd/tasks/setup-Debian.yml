@@ -1,0 +1,10 @@
+---
+# tasks file for useradd
+- name: kullanici ekleme taski
+  user:
+    create_home: true
+    groups: "{{ add_to_groups_debian | default('null') }}"
+    name: "{{ user_name }}"
+    password: "{{ user_password | default('!') | password_hash('sha512') }}" 
+    shell: "/bin/bash"     
+

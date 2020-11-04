@@ -1,0 +1,12 @@
+---
+# tasks file for akala-sep
+
+- include_vars: "group_vars/userpas.yml"
+
+#- include_tasks: variables.yml
+- include_tasks: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
+

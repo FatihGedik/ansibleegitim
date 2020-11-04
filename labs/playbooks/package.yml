@@ -1,0 +1,18 @@
+---
+- name: my playbook common
+  hosts: all
+  become: true
+  become_method: sudo
+  become_user: root
+  remote_user: badmin
+
+  tasks:
+  - name: install ntp package
+    package: "name=ntp state=present"
+  - name: restart ntpd service on RedHAT Family
+    service: "name=ntpd enabled=true state=restarted"
+    when: ansible_os_family == "RedHat"
+  - name: restart ntp service on Debian Family
+    service: "name=ntp enabled=true state=restarted"
+    when: ansible_os_family == "Debian"
+

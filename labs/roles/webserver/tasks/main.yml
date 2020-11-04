@@ -1,0 +1,17 @@
+---
+- name: install http package on RHEL
+  package: "name=httpd state=present"
+  when: ansible_os_family == "RedHat"
+
+- name: install apache2 package on Debian
+  package: "name=apache2 state=present"
+  when: ansible_os_family == "Debian"
+
+- name: restart httpd service on RedHAT Family
+  service: "name=httpd enabled=true state=restarted"
+  when: ansible_os_family == "RedHat"
+
+- name: restart apache2 service on Debian Family
+  service: "name=apache2 enabled=true state=restarted"
+  when: ansible_os_family == "Debian"
+

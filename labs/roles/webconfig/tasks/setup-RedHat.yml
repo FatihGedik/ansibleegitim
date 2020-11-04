@@ -1,0 +1,48 @@
+- name: Configure firewalld
+  firewalld:
+    port: 80/tcp
+    permanent: true
+    state: enabled
+    zone: public
+
+- name: Restart firewall
+  shell: |
+    firewall-cmd --reload
+
+
+- name: Create  directories if it does not exist
+  shell: |
+    mkdir /var/www/html/mywebserver
+    mkdir /etc/httpd/sites-available
+    mkdir /etc/httpd/sites-enabled
+    chown -R apache:apache /var/www/html/mywebserver
+
+- name: Copy my-vhost.conf override files into sites-avaliable.
+  template:
+    src: my-vhost.conf.j2
+    dest: /etc/httpd/sites-available/my-vhost.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Link config in sites-available to sites-enabled
+  shell: |
+    ln -sf /etc/httpd/sites-available/my-vhost.conf /etc/httpd/sites-enabled/my-vhost.conf
+  notify:
+    - restart_httpd
+
+    
+- meta: flush_handlers
+
+
+- name: "copy index.html"
+  copy:
+    src: "index.html"
+    dest: "/var/www/html/mywebserver/index.html"
+    owner: "apache"
+    group: "apache"
+    mode: 0644
+  notify:
+    - restart_httpd
+
+

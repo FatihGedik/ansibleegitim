@@ -1,0 +1,36 @@
+---
+
+- hosts: all
+  become: true
+  remote_user: badmin
+  roles:
+    - role: setup
+  tags: setup
+
+- hosts: all
+  become: true
+  remote_user: badmin
+  roles:
+    - role: useradd
+  tags: usr
+
+- hosts: all
+  become: true
+  remote_user: badmin
+  roles:
+    - role: diskdurumu
+  tags: disk
+
+- hosts: webservers
+  become: true
+  remote_user: badmin
+  roles:
+   - role: webserver
+  tags: web
+
+- hosts: webservers
+  become: true
+  remote_user: badmin
+  roles:
+   - role: webconfig
+  tags: webconf

@@ -1,0 +1,10 @@
+---
+http_port: 80
+
+#listen_addr: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+
+listen_addr: "{{ ansible_ssh_host }}"
+
+srv_name: "{{ ansible_ssh_host }}"
+
+

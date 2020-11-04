@@ -1,0 +1,51 @@
+- name: allow to http
+  ufw:
+    rule: allow
+    port: 80
+    proto: tcp 
+
+
+- name: Copy my-vhost.conf override files into include directory.
+  template:
+    src: my-vhost.conf.j2
+    dest: /etc/apache2/conf-available/my-vhost.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart_apache2
+
+- name: Copy my-vhost.conf override files into include directory.
+  template:
+    src: my-vhost.conf.j2
+    dest: /etc/apache2/conf-enabled/my-vhost.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart_apache2
+
+
+- name: Create a directory if it does not exist
+  file:
+    path: /var/www/html/mywebserver
+    state: directory
+    mode: '0755'
+    owner: www-data
+    group: www-data
+    mode: 644
+  notify:
+    - restart_apache2
+
+- meta: flush_handlers
+
+- name: "copy index.html"
+  copy:
+    src: "index.html"
+    dest: "/var/www/html/mywebserver/index.html"
+    owner: "www-data"
+    group: "www-data"
+    mode: 0644
+  notify:
+    - restart_apache2
+

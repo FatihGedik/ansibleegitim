@@ -1,0 +1,14 @@
+---
+# tasks file for setup
+
+- name: Gather variables for ansible
+  setup:
+    gather_subset:
+      - '!all'
+      - '!any'
+      - facter
+  register: sp
+
+- name: show gathered data
+  debug:
+    msg: "{{ sp }}" 
