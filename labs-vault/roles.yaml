@@ -6,4 +6,7 @@
   roles:
     - role: useradd
   tags: usr
+  vars_files:
+    - group_vars/secret.yml
+
 

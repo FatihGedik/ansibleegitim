@@ -1,7 +1,7 @@
 ---
 # tasks file for akala-sep
 
-- include_vars: "group_vars/userpas.yml"
+#- include_vars: "group_vars/userpas.yml"
 
 #- include_tasks: variables.yml
 - include_tasks: setup-RedHat.yml
