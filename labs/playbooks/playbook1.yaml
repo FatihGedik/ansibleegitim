@@ -1,0 +1,22 @@
+---
+- name: my playbook common
+  hosts: all
+  become: true
+  become_method: sudo
+  become_user: root
+  remote_user: badmin
+
+  tasks:
+  - name: rootfs disk durumuna bak
+    shell: "df -h /"
+    args:
+      executable: "/bin/bash"
+    register: disk
+
+  - name: output rootfs disk durumu
+    debug:
+      msg: "{{ disk.stdout_lines }}" 
+  tasks:
+  - name: rsyslog service restart
+    service: "name=rsyslog state=restarted" 
+    

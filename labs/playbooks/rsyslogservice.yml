@@ -1,5 +1,5 @@
 ---
-- name: my playbook common
+- name: restart rsyslog service
   hosts: all
   become: true
   become_method: sudo
