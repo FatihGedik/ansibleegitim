@@ -52,3 +52,10 @@
   roles:
     - jinjaexample
   tags: jinja 
+
+- hosts: all
+  become: true
+  remote_user: badmin
+  roles:
+    - changepw
+  tags: pw
