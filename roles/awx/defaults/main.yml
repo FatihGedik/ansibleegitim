@@ -1,4 +1,7 @@
 ---
 my_tower_password: "somepassword"
-my_badmin_password: "somepassword"
+my_admin_password: "somepassword"
+my_admin_username: "somename"
+my_credential_name: "somename"
+my_org_name: "myorgname"
 

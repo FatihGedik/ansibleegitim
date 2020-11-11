@@ -1,12 +1,12 @@
 ---
 - name: Add tower machine credential
   tower_credential:
-    name: egitim-admin
-    organization: Bilge Adam
-    username: badmin
-    password: "{{ my_badmin_password }}"
+    name: "{{ my_credential_name }}"
+    username: "{{ my_admin_username }}"
+    password: "{{ my_admin_password }}"
+    organization: "{{ my_org_name }}"
     become_method: sudo
-    become_password: "{{ my_badmin_password }}"
+    become_password: "{{ my_admin_password }}"
     become_username: root
     state: present
     kind: ssh

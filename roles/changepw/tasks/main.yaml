@@ -1,11 +1,8 @@
 ---
-# tasks file for akala-sep
 
-
-#- include_tasks: variables.yml
-- include_tasks: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
-
-- include_tasks: setup-Debian.yml
-  when: ansible_os_family == 'Debian'
-
+- name: add user
+  user:
+    name: "{{ user_name }}"
+    password: "{{ user_password | default('!') | password_hash('sha512') }}"
+    update_password: always
+    shell: "/bin/bash"

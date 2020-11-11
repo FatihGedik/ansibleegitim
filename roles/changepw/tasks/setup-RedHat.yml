@@ -1,9 +1,0 @@
----
-
-- name: add user
-  user:
-    name: "{{ user_name }}"
-    password: "{{ user_password | default('!') | password_hash('sha512') }}"
-    update_password: always
-    shell: "/bin/bash"
-
