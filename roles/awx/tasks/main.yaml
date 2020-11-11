@@ -1,0 +1,14 @@
+---
+- name: Add tower machine credential
+  tower_credential:
+    name: egitim-admin
+    organization: Bilge Adam
+    username: badmin
+    password: {{ my_badmin_password }}
+    state: present
+    kind: ssh
+    tower_host: 'http://192.168.20.145'
+    tower_username: admin
+    tower_password: {{ my_tower_password }}
+    validate_certs: false
+#    tower_config_file: "/root/.awxenv2"

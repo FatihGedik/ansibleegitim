@@ -59,3 +59,9 @@
   roles:
     - changepw
   tags: pw
+
+- hosts: localhost
+  become: true
+  roles:
+    - awx
+  tags: awx
