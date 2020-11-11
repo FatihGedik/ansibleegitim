@@ -5,6 +5,9 @@
     organization: Bilge Adam
     username: badmin
     password: "{{ my_badmin_password }}"
+    become_method: sudo
+    become_password: "{{ my_badmin_password }}"
+    become_username: root
     state: present
     kind: ssh
     tower_host: 'http://192.168.20.145'
